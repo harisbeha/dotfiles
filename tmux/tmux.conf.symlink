@@ -7,6 +7,9 @@ set-option -g prefix `
 bind-key C-a set-option -g prefix C-a
 bind-key C-b set-option -g prefix `
 
+
+set -g default-terminal "screen-256color"
+
 # Default key repeat is 500ms, lower to 125ms
 # otherwise hitting up arrow right after moving to new window counts
 # as moving back to window above
