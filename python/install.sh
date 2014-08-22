@@ -4,4 +4,7 @@
 
 
 #Install python tools
-brew install python --with-brewed-openssl python3 --with-brewed-openssl
+brew install pyenv
+
+#install pyenv plugins
+brew install pyenv-virtualenv
