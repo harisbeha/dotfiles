@@ -259,3 +259,8 @@ cdp() {
         echo "Module ${1} was not found or is not importable: $MODULE_DIRECTORY"
     fi
 }
+
+#enable install of global pip packages
+gpip(){
+   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
