@@ -22,6 +22,8 @@ brew install wget
 brew install git
 brew install gcc
 brew install vagrant
+brew install zsh
+brew install tmux
 brew install --HEAD vim --with-python
 
 brew cask doctor
