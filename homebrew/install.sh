@@ -13,7 +13,10 @@ then
 fi
 
 # Install homebrew packages
-brew install grc coreutils spark gcc git cmake 
+brew install coreutils
+brew install wget
+brew install git
+brew install gcc
 brew install --HEAD vim
 
 exit 0
