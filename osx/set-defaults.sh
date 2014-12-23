@@ -385,3 +385,5 @@ if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
 	defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
 	rm  "${HOME}/${TERM_PROFILE}.terminal" 
 fi;
+
+chsh -s /usr/local/bin/zsh
