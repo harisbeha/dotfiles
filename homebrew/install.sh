@@ -12,11 +12,22 @@ then
   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 fi
 
+brew update
+brew doctor
+
 # Install homebrew packages
+brew install caskroom/cask/brew-cask
 brew install coreutils
 brew install wget
 brew install git
 brew install gcc
 brew install --HEAD vim
+
+brew cask doctor
+brew tap caskroom/versions
+brew cask install firefoxdeveloperedition
+brew cask install dropbox
+brew cask install evernote
+
 
 exit 0
