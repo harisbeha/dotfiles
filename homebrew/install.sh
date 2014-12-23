@@ -21,13 +21,16 @@ brew install coreutils
 brew install wget
 brew install git
 brew install gcc
-brew install --HEAD vim
+brew install vagrant
+brew install --HEAD vim --with-python
 
 brew cask doctor
 brew tap caskroom/versions
 brew cask install firefoxdeveloperedition
 brew cask install dropbox
 brew cask install evernote
+brew cask install virtualbox
+brew cask install sublime-text3
 
 
 exit 0
