@@ -8,7 +8,7 @@ export ZSH=$HOME/.dotfiles
 
 # Set OS X defaults
 $ZSH/osx/set-defaults.sh
-
+$ZSH/osx/set-machine-name.sh
 # Upgrade homebrew
 brew update
 
