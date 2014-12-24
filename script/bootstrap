@@ -152,5 +152,7 @@ then
   fi
 fi
 
+sed -i '$ a\/usr/local/bin/zsh' /etc/shells
+
 echo ''
 echo '  All installed!'
