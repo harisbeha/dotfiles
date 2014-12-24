@@ -6,11 +6,11 @@
 # to make sure you're on the latest and greatest.
 export ZSH=$HOME/.dotfiles
 
-# Set OS X defaults
-$ZSH/osx/set-defaults.sh
-hostname=helios $ZSH/osx/set-machine-name.sh
 # Upgrade homebrew
 brew update
+brew doctor
+brew cask update
+brew cask doctor
 
 # Install homebrew packages
 $ZSH/homebrew/install.sh 2>&1
