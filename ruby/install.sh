@@ -12,5 +12,10 @@ then
   brew install ruby-build > /tmp/ruby-build-install.log
 fi
 
-
+echo "Installing Ruby Applications"
 gem install rails
+
+
+
+#make it known
+rbenv rehash
