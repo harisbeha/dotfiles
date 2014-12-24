@@ -16,7 +16,7 @@ brew update
 brew doctor
 
 # Install homebrew packages
-brew install caskroom/cask/brew-cask
+echo "Installing Brew Items"
 brew install coreutils
 brew install wget
 brew install git
@@ -26,7 +26,12 @@ brew install zsh
 brew install tmux
 brew install --HEAD vim --with-python
 
+echo "Installing Brew Cask"
+brew install caskroom/cask/brew-cask
+brew cask update
 brew cask doctor
+
+echo "Install applications via Brew Cask"
 brew tap caskroom/versions
 brew cask install firefoxdeveloperedition
 brew cask install dropbox
