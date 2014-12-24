@@ -24,6 +24,7 @@ brew install gcc
 brew install vagrant
 brew install zsh
 brew install tmux
+brew install sqlite3
 brew install --HEAD vim --with-python
 
 echo "Installing Brew Cask"
