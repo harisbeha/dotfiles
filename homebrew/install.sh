@@ -39,6 +39,6 @@ brew cask install google-chrome
 brew cask install dropbox
 brew cask install evernote
 brew cask install razorsql
-
+brew cask install vmware-fusion
 
 exit 0
