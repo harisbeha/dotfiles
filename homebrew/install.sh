@@ -40,5 +40,6 @@ brew cask install dropbox
 brew cask install evernote
 brew cask install razorsql
 brew cask install vmware-fusion
+brew cask install spectacle
 
 exit 0
