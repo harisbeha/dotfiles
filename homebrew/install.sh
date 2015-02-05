@@ -38,7 +38,6 @@ brew tap caskroom/versions
 brew cask install google-chrome
 brew cask install dropbox
 brew cask install evernote
-brew cask install sublime-text3
 brew cask install razorsql
 
 
