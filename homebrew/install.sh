@@ -26,6 +26,7 @@ brew install zsh
 brew install tmux
 brew install sqlite3
 brew install --HEAD vim --with-python
+brew install macvim
 
 echo "Installing Brew Cask"
 brew install caskroom/cask/brew-cask
@@ -34,11 +35,11 @@ brew cask doctor
 
 echo "Install applications via Brew Cask"
 brew tap caskroom/versions
-brew cask install firefoxdeveloperedition
+brew cask install google-chrome
 brew cask install dropbox
 brew cask install evernote
-brew cask install virtualbox
 brew cask install sublime-text3
+brew cask install razorsql
 
 
 exit 0
