@@ -21,7 +21,6 @@ brew install coreutils
 brew install wget
 brew install git
 brew install gcc
-brew install vagrant
 brew install zsh
 brew install tmux
 brew install sqlite3
@@ -39,7 +38,13 @@ brew cask install google-chrome
 brew cask install dropbox
 brew cask install evernote
 brew cask install razorsql
-brew cask install vmware-fusion
-brew cask install spectacle
+brew cask install cinch
+brew cask install virtualbox
+echo "You need to install virtualbox add-ons manually"
+brew cask install vagrant
+brew cask install github
 
+
+brew cleanup
+brew cask cleanup
 exit 0
