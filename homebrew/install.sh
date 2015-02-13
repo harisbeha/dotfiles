@@ -115,14 +115,10 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 casks=(
   # Applications
   chromium
-  chronosync
   dropbox
   firefox
   google-chrome
-  gyazo
-  istat-menus
   macvim
-  omnidisksweeper
   the-unarchiver
   totalfinder
   vagrant
