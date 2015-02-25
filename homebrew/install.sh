@@ -88,7 +88,6 @@ recipes=(
   ssh-copy-id
   terminal-notifier
   vim --with-python
-  macvim
 )
 
 brew_install_recipes
@@ -125,8 +124,6 @@ casks=(
   virtualbox
   evernote
   razorsql
-  cinch
-  github
   # Quick Look plugins
   #betterzipql
   #qlcolorcode
