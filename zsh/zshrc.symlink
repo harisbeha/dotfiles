@@ -40,7 +40,3 @@ done
 unset config_files
 
 
-#caveats of pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-

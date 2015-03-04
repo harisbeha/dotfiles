@@ -48,7 +48,7 @@ function setdiff() {
 function brew_tap_kegs() {
   kegs=($(setdiff "${kegs[*]}" "$(brew tap)"))
   if (( ${#kegs[@]} > 0 )); then
-    e_header "Tapping Homebrew kegs: ${kegs[*]}"
+    echo "Tapping Homebrew kegs: ${kegs[*]}"
     for keg in "${kegs[@]}"; do
       brew tap $keg
     done
@@ -59,7 +59,7 @@ function brew_tap_kegs() {
 function brew_install_recipes() {
   recipes=($(setdiff "${recipes[*]}" "$(brew list)"))
   if (( ${#recipes[@]} > 0 )); then
-    e_header "Installing Homebrew recipes: ${recipes[*]}"
+    echo "Installing Homebrew recipes: ${recipes[*]}"
     for recipe in "${recipes[@]}"; do
       brew install $recipe
     done
@@ -88,6 +88,7 @@ recipes=(
   ssh-copy-id
   terminal-notifier
   vim --with-python
+  python
 )
 
 brew_install_recipes
@@ -96,6 +97,7 @@ brew_install_recipes
 # Ensure the cask keg and recipe are installed.
 kegs=(caskroom/cask)
 brew_tap_kegs
+brew tap caskroom/versions
 recipes=(brew-cask)
 brew_install_recipes
 
@@ -121,20 +123,20 @@ casks=(
   the-unarchiver
   totalfinder
   vagrant
-  virtualbox
   evernote
   razorsql
+  sublime-text3
   # Quick Look plugins
-  #betterzipql
-  #qlcolorcode
-  #qlmarkdown
-  #qlprettypatch
-  #qlstephen
-  #quicklook-csv
-  #quicklook-json
-  #quicknfo
-  #suspicious-package
-  #webp-quicklook
+  # betterzipql
+  # qlcolorcode
+  # qlmarkdown
+  # qlprettypatch
+  # qlstephen
+  # quicklook-csv
+  # quicklook-json
+  # quicknfo
+  # suspicious-package
+  # webp-quicklook
 )
 
 # Install Homebrew casks.

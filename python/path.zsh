@@ -1,4 +1,4 @@
 
-#Add vars for pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export WORKON_HOME=~/Documents/virtualenv
+
+source /usr/local/bin/virtualenvwrapper.sh
