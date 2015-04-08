@@ -6,13 +6,16 @@ declare -a DIRECTORIES=(
     "$HOME/archive"
     "$HOME/Downloads/torrents"
     "$HOME/Documents/projects"
+    "$HOME/.vim/undos"
+    "$HOME/.vim/swaps"
+    "$HOME/.vim/backups"
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
     for i in ${DIRECTORIES[@]}; do
-        mkd "$i"
+        mkd -p "$i"
     done
 }
 
