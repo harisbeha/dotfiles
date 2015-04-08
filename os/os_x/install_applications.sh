@@ -55,8 +55,13 @@ declare -a HOMEBREW_ALTERNATE_CASKS=(
     "google-chrome-canary"
 )
 
+#TODO: configure to install gems later.
 declare -a RUBY_GEMS=(
     "rails"
+)
+
+declare -a HOMEBREW_FONT_CASKS=(
+    "font-ubuntu-mono-powerline"
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -118,6 +123,17 @@ main() {
             if [ $(brew tap | grep "caskroom/versions" &> /dev/null; printf $?) -eq 0 ]; then
                 for i in ${!HOMEBREW_ALTERNATE_CASKS[*]}; do
                     tmp="${HOMEBREW_ALTERNATE_CASKS[$i]}"
+                    [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
+                        && print_success "$tmp" \
+                        || execute "brew cask install $tmp" "$tmp"
+                done
+            fi
+            # Homebrew fonts casks
+            brew tap caskroom/fonts &> /dev/null
+
+            if [ $(brew tap | grep "caskroom/versions" &> /dev/null; printf $?) -eq 0 ]; then
+                for i in ${!HOMEBREW_FONT_CASKS[*]}; do
+                    tmp="${HOMEBREW_FONT_CASKS[$i]}"
                     [ $(brew cask list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
                         && print_success "$tmp" \
                         || execute "brew cask install $tmp" "$tmp"
