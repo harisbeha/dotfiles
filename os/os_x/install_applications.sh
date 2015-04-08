@@ -9,11 +9,21 @@ declare -a HOMEBREW_FORMULAE=(
     "bash-completion"
     "caskroom/cask/brew-cask"
     "git"
+    "git-extras"
     "imagemagick --with-webp"
     "iojs"
     "node"
-    "vim --override-system-vi"
+    "vim --with-python --override-system-vi"
+    "python"
+    "node"
+    "hub"
+    "wget"
+    "coreutils"
+    "ssh-copy-id"
     "zopfli"
+    "tmux"
+    "rbenv"
+    "ruby-build"
 )
 
 # Homebrew Casks
@@ -43,6 +53,10 @@ declare -a HOMEBREW_CASKS=(
 declare -a HOMEBREW_ALTERNATE_CASKS=(
     "firefox-nightly"
     "google-chrome-canary"
+)
+
+declare -a RUBY_GEMS=(
+    "rails"
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

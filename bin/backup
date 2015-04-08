@@ -1,0 +1,11 @@
+#!/bin/sh
+
+DRIVE01="/Users/andrew"
+DRIVE03="/Volumes/Main Storage/Time Machine"
+
+rsync -av --delete --exclude="/.*" "$DRIVE01/Documents/" "$DRIVE03/Macintosh HD/Documents/"
+rsync -av --delete --exclude="/.*" "$DRIVE01/Music/" "$DRIVE03/Macintosh HD/Music/"
+rsync -av --delete --exclude="/.*" "$DRIVE01/Pictures/" "$DRIVE03/Macintosh HD/Pictures/"
+rsync -av --delete --exclude="/.*" "$DRIVE01/Movies/" "$DRIVE03/Macintosh HD/Movies/"
+
+
