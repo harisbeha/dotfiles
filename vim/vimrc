@@ -6,7 +6,7 @@
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" =>                    Plugin Installed 
+" =>                    Plugin Installed
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Vundle
 "NERDTree
@@ -47,6 +47,7 @@ if !filereadable(vundle_readme)
     silent !mkdir -p ~/.vim/bundle
     silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
     let noBundles=0
+endif
 " Set the runtime path to include Vundle
 
 " Initialize Vundle and specify the path
@@ -82,7 +83,6 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'davidhalter/jedi-vim'
     Plugin 'kien/ctrlp.vim'
     Plugin 'sjl/gundo.vim'
-    Plugin 'tpope/vim-surround'
     Plugin 'Townk/vim-autoclose'
     Plugin 'vim-scripts/TaskList.vim'
 call vundle#end()
@@ -260,7 +260,7 @@ map <leader>ba :1,1000 bd!<cr>
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -400,7 +400,7 @@ map <leader>pp :setlocal paste!<cr>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 "highlight row except when reading
-set cursorline " highlight the current line/column 
+set cursorline " highlight the current line/column
 " f9 to toggle line/column highlighting
 noremap <silent><f9> :set cursorline! cursorcolumn!<cr>
 
@@ -549,7 +549,7 @@ let g:pymode_folding = 0
 
 " Load custom Emmet snippets
 " http://docs.emmet.io/customization/snippets/
-let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
+"let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
