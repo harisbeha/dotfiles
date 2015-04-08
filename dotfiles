@@ -242,6 +242,8 @@ main() {
         ./os/install_applications.sh
         printf "\n"
         ./os/install_npm_packages.sh
+        printf "\n"
+        ./os/install_pip_packages.sh
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
