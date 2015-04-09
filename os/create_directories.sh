@@ -15,7 +15,7 @@ declare -a DIRECTORIES=(
 
 main() {
     for i in ${DIRECTORIES[@]}; do
-        mkd -p "$i"
+        mkdir -p "$i"
     done
 }
 
