@@ -3,5 +3,5 @@ atom.symlink/.storage
 atom.symlink/packages
 atom.symlink/storage
 atom.symlink/themes
-
+vim/vim/plugins
 git/gitconfig.symlink

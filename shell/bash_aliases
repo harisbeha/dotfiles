@@ -47,10 +47,10 @@ alias c="tr -d '\n' | pbcopy"
 
 #make ls pretty
 
-alias ls="ls -F --color"
-alias l="ls -lAh --color"
-alias ll="ls -l --color"
-alias la='ls -A --color'
+alias ls="ls -F -color"
+alias l="ls -lAh -color"
+alias ll="ls -l -color"
+alias la='ls -A -color'
 
 if [ "$OS" != "osx" ]; then
     alias pbcopy='xclip -selection clipboard'
@@ -290,7 +290,7 @@ if [ "$OS" == "osx" ]; then
 
     # Lock the screen (when going AFK)
     alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-    
+
     # Disable Spotlight
     alias spotoff="sudo mdutil -a -i off"
     # Enable Spotlight

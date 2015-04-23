@@ -12,6 +12,7 @@ declare -a APT_PACKAGES=(
     "libpq-dev"
     "autotools"
     "autoconf"
+    "exuberant-ctags"
 
     # GnuPG archive keys of the Debian archive
     "debian-archive-keyring"
