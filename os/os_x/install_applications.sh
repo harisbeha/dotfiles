@@ -24,6 +24,7 @@ declare -a HOMEBREW_FORMULAE=(
     "tmux"
     "rbenv"
     "ruby-build"
+    "ctags-exuberant"
 )
 
 # Homebrew Casks

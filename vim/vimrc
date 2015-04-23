@@ -85,6 +85,8 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'sjl/gundo.vim'
     Plugin 'Townk/vim-autoclose'
     Plugin 'vim-scripts/TaskList.vim'
+    Plugin 'majutsushi/tagbar'
+
 call vundle#end()
 
 if noBundles == 0
@@ -255,7 +257,7 @@ map k gk
 map <leader>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+map <leader>cb :1,1000 bd!<cr>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -308,6 +310,12 @@ nmap <leader>* :%s/\<<C-r><C-w>\>//<Left>
 " https://github.com/tomtom/tcomment_vim
 map <leader>cc :TComment<CR>
 
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,cl] Ctags
+
+nnoremap <silent> <Leader>cl :TagbarToggle<CR>
+nnoremap <leader>. :CtrlPTag<cr>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,cr] Calculate result
@@ -408,7 +416,7 @@ noremap <silent><f9> :set cursorline! cursorcolumn!<cr>
 
 "Mapping for ctrlp
 let cwd = getcwd()
-map <leader>ct  :CtrlP cwd<CR>
+map <leader>c  :CtrlP cwd<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -423,7 +431,7 @@ map <leader>gt :GundoToggle<CR>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 "Make ctrl+s save like in textpad
-inoremap <^-S> <ESC>:w<CR>
+inoremap <c-S> <ESC>:w<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -465,7 +473,7 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
+map <leader>cp :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
