@@ -68,7 +68,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'plasticboy/vim-markdown'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
-    Plugin 'shougo/neocomplcache.vim'
+    " Plugin 'shougo/neocomplcache.vim'
     Plugin 'shutnik/jshint2.vim'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-commentary'
@@ -80,13 +80,13 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'jmcantrell/vim-virtualenv'
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'klen/python-mode'
-    Plugin 'davidhalter/jedi-vim'
+    " Plugin 'davidhalter/jedi-vim'
     Plugin 'kien/ctrlp.vim'
     Plugin 'sjl/gundo.vim'
     Plugin 'Townk/vim-autoclose'
     Plugin 'vim-scripts/TaskList.vim'
     Plugin 'majutsushi/tagbar'
-
+    Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 
 if noBundles == 0
@@ -263,11 +263,11 @@ map <leader>cb :1,1000 bd!<cr>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
+" try
+"   set switchbuf=useopen,usetab,newtab
+"   set stal=2
+" catch
+" endtry
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -341,10 +341,10 @@ nmap <leader>l :set list!<CR>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,n ] Toggle `set relativenumber`
-nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
+nmap <leader>cn :call ToggleRelativeLineNumbers()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+"
 " [,ss] Strip trailing whitespace
 nmap <leader>ss :call StripTrailingWhitespaces()<CR>
 
@@ -554,17 +554,22 @@ let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 " Don't autofold code
-let g:pymode_folding = 0
+" let g:pymode_folding = 0
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 "Jedi-Vim
-set completeopt=menu
-let g:jedi#completions_enabled = 1
-let g:jedi#popup_select_first = 0
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#show_call_signatures = "2"
+" set completeopt=menu
+" let g:jedi#completions_enabled = 1
+" let g:jedi#popup_select_first = 0
+" let g:jedi#use_tabs_not_buffers = 0
+" let g:jedi#show_call_signatures = "2"
 
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+"YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -598,7 +603,7 @@ let g:vim_markdown_folding_disabled=1
 
 " Enable `neocomplcache` by default
 " https://github.com/Shougo/neocomplcache.vim#installation
-let g:neocomplcache_enable_at_startup=1
+" let g:neocomplcache_enable_at_startup=1
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -606,21 +611,21 @@ let g:neocomplcache_enable_at_startup=1
 
 " Inform Syntastic which checkers to use based on file types
 " https://github.com/scrooloose/syntastic#3-faq
-let g:syntastic_html_checkers = [ 'jshint', 'validator' ]
-let g:syntastic_javascript_checkers = [ 'jscs', 'jshint' ]
-
-" Disable syntax checking by default
-let g:syntastic_mode_map = {
-    \ 'active_filetypes': [],
-    \ 'mode': 'passive',
-    \ 'passive_filetypes': []
-\}
+" let g:syntastic_html_checkers = [ 'jshint', 'validator' ]
+" let g:syntastic_javascript_checkers = [ 'jscs', 'jshint' ]
+"
+" " Disable syntax checking by default
+" let g:syntastic_mode_map = {
+"     \ 'active_filetypes': [],
+"     \ 'mode': 'passive',
+"     \ 'passive_filetypes': []
+" \}
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Vim-Airline
 
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -899,3 +904,16 @@ if has('autocmd')
     augroup END
 
 endif
+
+
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
