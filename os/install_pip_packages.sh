@@ -5,6 +5,7 @@ cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 declare -r -a PIP_PACKAGES=(
     "virtualenv"
     "virtualenvwrapper"
+    "neovim"
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
