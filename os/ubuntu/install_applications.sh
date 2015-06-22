@@ -13,6 +13,7 @@ declare -a APT_PACKAGES=(
     "autotools"
     "autoconf"
     "exuberant-ctags"
+    "neovim"
 
     # GnuPG archive keys of the Debian archive
     "debian-archive-keyring"

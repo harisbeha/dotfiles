@@ -99,7 +99,7 @@ endif
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
-
+set omnifunc=syntaxcomplete#Complete
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -252,6 +252,20 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
+
+" jump to start and end of line while staying in home row
+noremap H ^
+noremap L $
+
+" Use arrow keys to switch buffers
+noremap <left> :bp<CR>
+noremap <right> :bn<CR>
+
+" disable up and down arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>
