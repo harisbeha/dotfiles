@@ -56,6 +56,7 @@ call vundle#begin('~/.vim/plugins')
     " Let Vundle manage Vundle (this is important!)
     Plugin 'gmarik/Vundle.vim'
 
+    Plugin 'bling/vim-airline'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'ap/vim-css-color'
     Plugin 'chrisbra/unicode.vim'
@@ -68,7 +69,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'plasticboy/vim-markdown'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
-    " Plugin 'shougo/neocomplcache.vim'
+    Plugin 'shougo/neocomplcache.vim'
     Plugin 'shutnik/jshint2.vim'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-commentary'
@@ -76,17 +77,15 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-surround'
     Plugin 'vim-scripts/xoria256.vim'
-    Plugin 'bling/vim-airline'
     Plugin 'jmcantrell/vim-virtualenv'
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'klen/python-mode'
-    " Plugin 'davidhalter/jedi-vim'
+    Plugin 'davidhalter/jedi-vim'
     Plugin 'kien/ctrlp.vim'
     Plugin 'sjl/gundo.vim'
     Plugin 'Townk/vim-autoclose'
     Plugin 'vim-scripts/TaskList.vim'
     Plugin 'majutsushi/tagbar'
-    Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 
 if noBundles == 0
@@ -99,7 +98,7 @@ endif
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
-set omnifunc=syntaxcomplete#Complete
+" set omnifunc=syntaxcomplete#Complete
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -268,10 +267,10 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+map <silent>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>cb :1,1000 bd!<cr>
+map <silent>cb :1,1000 bd!<cr>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -298,20 +297,8 @@ nmap <leader>w :w!<cr>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Faster buffer switching
-
-map <C-f> <leader>bn
-map <C-d> <leader>bp
-map <C-a> <leader>ls
-
 " Use a different mapleader (default is '\')
 let mapleader = ','
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Redefine trigger key for Emmet
-" http://docs.emmet.io/cheat-sheet/
-let g:user_emmet_leader_key='<C-E>'
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -329,7 +316,6 @@ map <leader>cc :TComment<CR>
 " [,cl] Ctags
 
 nnoremap <silent> <Leader>cl :TagbarToggle<CR>
-nnoremap <leader>. :CtrlPTag<cr>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,cr] Calculate result
@@ -343,11 +329,6 @@ map <leader>cs <Esc>:noh<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" [,h ] JSHint the code
-" https://github.com/Shutnik/jshint2.vim
-nmap <leader>h :JSHint<CR>
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,l ] Toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -376,11 +357,6 @@ nmap <leader>tl :call ToggleLimits()<CR>
 
 " [,tn] Toggle NERDTree
 map <leader>tn :NERDTreeToggle<CR>
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" [,ts] Toggle Syntastic
-nmap <leader>ts :SyntasticToggleMode<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -424,7 +400,7 @@ map <leader>pp :setlocal paste!<cr>
 "highlight row except when reading
 set cursorline " highlight the current line/column
 " f9 to toggle line/column highlighting
-noremap <silent><f9> :set cursorline! cursorcolumn!<cr>
+noremap <leader>ce  :set cursorline! cursorcolumn!<cr>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -450,8 +426,8 @@ inoremap <c-S> <ESC>:w<CR>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Better navigating through omnicomplete option list
-inoremap <silent><^-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><^-k> <C-R>=OmniPopup('k')<CR>
+inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
+inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -488,9 +464,6 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 "   <leader>p
 "
 map <leader>cp :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -574,24 +547,22 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 "Jedi-Vim
 " set completeopt=menu
-" let g:jedi#completions_enabled = 1
-" let g:jedi#popup_select_first = 0
-" let g:jedi#use_tabs_not_buffers = 0
-" let g:jedi#show_call_signatures = "2"
+let g:jedi#completions_enabled = 1
+let g:jedi#popup_select_first = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#show_call_signatures = "1"
 
+" Neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+if !exists('g:neocomplcache_omni_functions')
+    let g:neocomplcache_omni_functions = {}
+endif
 
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-"YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion=1
-nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Emmet
-
-" Load custom Emmet snippets
-" http://docs.emmet.io/customization/snippets/
-"let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -613,29 +584,6 @@ let g:vim_markdown_folding_disabled=1
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" NeoComplCache
-
-" Enable `neocomplcache` by default
-" https://github.com/Shougo/neocomplcache.vim#installation
-" let g:neocomplcache_enable_at_startup=1
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" Syntastic
-
-" Inform Syntastic which checkers to use based on file types
-" https://github.com/scrooloose/syntastic#3-faq
-" let g:syntastic_html_checkers = [ 'jshint', 'validator' ]
-" let g:syntastic_javascript_checkers = [ 'jscs', 'jshint' ]
-"
-" " Disable syntax checking by default
-" let g:syntastic_mode_map = {
-"     \ 'active_filetypes': [],
-"     \ 'mode': 'passive',
-"     \ 'passive_filetypes': []
-" \}
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Vim-Airline
 
@@ -644,60 +592,65 @@ let g:airline_powerline_fonts = 1
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Status Line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Terminal types:
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " => Status Line
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-"   1) term  (normal terminals, e.g.: vt100, xterm)
-"   2) cterm (color terminals, e.g.: MS-DOS console, color-xterm)
-"   3) gui   (GUIs)
-
-highlight ColorColumn
-    \ term=NONE
-    \ cterm=NONE  ctermbg=237    ctermfg=NONE
-    \ gui=NONE    guibg=#073642  guifg=NONE
-
-highlight CursorLineNr
-    \ term=bold
-    \ cterm=bold  ctermbg=NONE   ctermfg=178
-    \ gui=bold    guibg=#073642  guifg=Orange
-
-highlight LineNr
-    \ term=NONE
-    \ cterm=NONE  ctermfg=241    ctermbg=NONE
-    \ gui=NONE    guifg=#839497  guibg=#073642
-
-highlight User1
-    \ term=NONE
-    \ cterm=NONE  ctermbg=237    ctermfg=Grey
-    \ gui=NONE    guibg=#073642  guifg=#839496
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-set statusline=
-set statusline+=%1*            " User1 highlight
-set statusline+=\ [%n]         " Buffer number
-set statusline+=\ %{GetGitBranchName()} " Git branch name
-set statusline+=\ [%f]         " Path to the file
-set statusline+=%m             " Modified flag
-set statusline+=%r             " Readonly flag
-set statusline+=%h             " Help file flag
-set statusline+=%w             " Preview window flag
-set statusline+=%y             " File type
-set statusline+=[
-set statusline+=%{&ff}         " File format
-set statusline+=:
-set statusline+=%{strlen(&fenc)?&fenc:'none'} " File encoding
-set statusline+=]
-set statusline+=%=             " Left/Right separator
-set statusline+=%c             " File encoding
-set statusline+=,
-set statusline+=%l             " Current line number
-set statusline+=/
-set statusline+=%L             " Total number of lines
-set statusline+=\ (%P)\        " Percent through file
+" " Terminal types:
+" "
+" "   1) term  (normal terminals, e.g.: vt100, xterm)
+" "   2) cterm (color terminals, e.g.: MS-DOS console, color-xterm)
+" "   3) gui   (GUIs)
+"
+" highlight ColorColumn
+"     \ term=NONE
+"     \ cterm=NONE  ctermbg=237    ctermfg=NONE
+"     \ gui=NONE    guibg=#073642  guifg=NONE
+"
+" highlight CursorLineNr
+"     \ term=bold
+"     \ cterm=bold  ctermbg=NONE   ctermfg=178
+"     \ gui=bold    guibg=#073642  guifg=Orange
+"
+" highlight LineNr
+"     \ term=NONE
+"     \ cterm=NONE  ctermfg=241    ctermbg=NONE
+"     \ gui=NONE    guifg=#839497  guibg=#073642
+"
+" highlight User1
+"     \ term=NONE
+"     \ cterm=NONE  ctermbg=237    ctermfg=Grey
+"     \ gui=NONE    guibg=#073642  guifg=#839496
+"
+" " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+"
+" set statusline=
+" set statusline+=%1*            " User1 highlight
+" let g:airline_section_b = airline#section#create('%{virtualenv#statusline()}')
+" let g:airline_section_a = airline#section#create(['mode','branch'])
+" let g:airline_section_c = airline#section#create(['hunks','%f'])
+" let g:airline_section_x = airline#section#create(['filetype'])
+" let g:airline_section_y = airline#section#create(['%P'])
+" let g:airline_section_z = airline#section#create_right(['linenr', '%c'])
+" set statusline+=\ %{GetGitBranchName()} " Git branch name
+" set statusline+=\ [%f]         " Path to the file
+" set statusline+=%m             " Modified flag
+" set statusline+=%r             " Readonly flag
+" set statusline+=%h             " Help file flag
+" set statusline+=%w             " Preview window flag
+" set statusline+=%y             " File type
+" set statusline+=[
+" set statusline+=%{&ff}         " File format
+" set statusline+=:
+" set statusline+=%{strlen(&fenc)?&fenc:'none'} " File encoding
+" set statusline+=]
+" set statusline+=%=             " Left/Right separator
+" set statusline+=%c             " File encoding
+" set statusline+=,
+" set statusline+=%l             " Current line number
+" set statusline+=/
+" set statusline+=%L             " Total number of lines
+" set statusline+=\ (%P)\        " Percent through file
 
 " Example result:
 "
