@@ -11,7 +11,6 @@ declare -a HOMEBREW_FORMULAE=(
     "git"
     "git-extras"
     "imagemagick --with-webp"
-    "iojs"
     "node"
     "vim --with-python --override-system-vi"
     "python"
@@ -33,16 +32,11 @@ declare -a HOMEBREW_FORMULAE=(
 declare -a HOMEBREW_CASKS=(
     "chromium"
     "dropbox"
-    "firefox"
     "flash"
     "google-chrome"
     "imageoptim"
-    "libreoffice"
-    "licecap"
     "the-unarchiver"
     "transmission"
-    "virtualbox"
-    "vlc"
 )
 
 # Homebrew Alternate Casks
@@ -50,7 +44,6 @@ declare -a HOMEBREW_CASKS=(
 
 declare -a HOMEBREW_ALTERNATE_CASKS=(
     "firefox-nightly"
-    "google-chrome-canary"
 )
 
 #TODO: configure to install gems later.
