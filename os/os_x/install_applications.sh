@@ -2,6 +2,13 @@
 
 cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
 
+
+# Homebrew Taps
+
+declare -a HOMEBREW_TAPS=(
+    "neovim/neovim"
+)
+
 # Homebrew Formulae
 # https://github.com/Homebrew/homebrew
 
@@ -24,6 +31,7 @@ declare -a HOMEBREW_FORMULAE=(
     "rbenv"
     "ruby-build"
     "ctags-exuberant"
+    "neovim"
 )
 
 # Homebrew Casks
@@ -85,6 +93,12 @@ main() {
         execute "brew update" "brew (update)"
         execute "brew upgrade" "brew (upgrade)"
         execute "brew cleanup" "brew (cleanup)"
+
+        # Homebrew Taps
+        for i in ${!HOMEBREW_TAPS[*]}; do
+            tmp="${HOMEBREW_TAPS[$i]}"
+            execute "brew tap $tmp" "$tmp"
+        done
 
         # Homebrew formulae
         for i in ${!HOMEBREW_FORMULAE[*]}; do
