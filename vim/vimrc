@@ -86,6 +86,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'Townk/vim-autoclose'
     Plugin 'vim-scripts/TaskList.vim'
     Plugin 'majutsushi/tagbar'
+    Plugin 'christoomey/vim-tmux-navigator'
 call vundle#end()
 
 if noBundles == 0
