@@ -55,5 +55,5 @@ export WORKON_HOME=~/Documents/virtualenv
 if [ "$OS" == "osx" ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 elif [ "$OS" == "ubuntu" ]; then
-    source /usr/bin/share/virtualenvwrapper.sh
+    source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
