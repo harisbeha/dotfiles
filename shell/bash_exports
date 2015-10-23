@@ -4,6 +4,14 @@
 # http://linux.die.net/man/1/bash
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Set path
+
+if [ "$OS" == "osx" ]; then
+    export PATH="~/.bin:/usr/local/bin:$PATH"
+elif [ "$OS" == "ubuntu" ]; then
+    export PATH="~/.bin:$PATH"
+fi
+export PATH="./bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # Make vim the default editor
 export EDITOR="vim"
