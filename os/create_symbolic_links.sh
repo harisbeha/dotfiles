@@ -29,6 +29,8 @@ declare -a FILES_TO_SYMLINK=(
     "vim/gvimrc"
     "vim/nvim"
     "vim/nvimrc"
+
+    "bin"
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
