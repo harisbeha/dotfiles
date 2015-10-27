@@ -4,22 +4,6 @@
 "    This file is ever changing and ever growing.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" =>                    Plugin Installed
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Vundle
-"NERDTree
-"GUNDO
-"TagBar
-"Airline
-"CTRLP
-"Git
-"TagList
-"Task List
-"Fugitive
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,7 +16,7 @@ filetype off                   " Disable file type detection
                                " (required by Vundle)
 
 " Set the runtime path to include Vundle
-set runtimepath+=~/.vim/bundle/Vundle.vim
+set runtimepath+=~/.vim/plugins/Vundle.vim
 
 " place holder for installing bundles
 let noBundles=1
@@ -40,12 +24,12 @@ let noBundles=1
 
 " Taken from fisadev/fisa-vim-config
 " used to setup vundle for first time installs
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+let vundle_readme=expand('~/.vim/plugins/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle..."
     echo ""
     silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/plugins/Vundle.vim
     let noBundles=0
 endif
 " Set the runtime path to include Vundle
@@ -55,35 +39,21 @@ endif
 call vundle#begin('~/.vim/plugins')
     " Let Vundle manage Vundle (this is important!)
     Plugin 'gmarik/Vundle.vim'
-
+    Plugin 'jnurmine/Zenburn'
     Plugin 'bling/vim-airline'
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'ap/vim-css-color'
-    Plugin 'chrisbra/unicode.vim'
-    Plugin 'editorconfig/editorconfig-vim'
-    Plugin 'godlygeek/tabular'
-    Plugin 'mattn/emmet-vim'
-    Plugin 'mattn/webapi-vim'
-    Plugin 'nathanaelkane/vim-indent-guides'
-    Plugin 'othree/html5.vim'
-    Plugin 'plasticboy/vim-markdown'
+    Plugin 'airblade/vim-gitgutter'
+    Plugin 'Valloric/YouCompleteMe'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
-    Plugin 'shougo/neocomplcache.vim'
-    Plugin 'shutnik/jshint2.vim'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-surround'
-    Plugin 'vim-scripts/xoria256.vim'
-    Plugin 'jmcantrell/vim-virtualenv'
-    Plugin 'tmhedberg/SimpylFold'
-    Plugin 'klen/python-mode'
     Plugin 'davidhalter/jedi-vim'
     Plugin 'kien/ctrlp.vim'
     Plugin 'sjl/gundo.vim'
-    Plugin 'Townk/vim-autoclose'
+    Plugin 'Raimondi/delimitMate'
     Plugin 'vim-scripts/TaskList.vim'
     Plugin 'majutsushi/tagbar'
     Plugin 'christoomey/vim-tmux-navigator'
@@ -99,7 +69,6 @@ endif
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
-" set omnifunc=syntaxcomplete#Complete
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -115,11 +84,6 @@ endif
 
 set t_Co=256                   " Enable full-color support
 
-if has('gui_running')          " ┐
-    colorscheme solarized      " │
-else                           " │ Use custom color scheme
-    colorscheme xoria256       " │
-endif                          " ┘
 
 set autoindent                 " Copy indent to the new line
 
@@ -228,13 +192,11 @@ set winminheight=0             " Allow windows to be squashed
 " Enable syntax highlighting
 syntax enable
 
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-
+" Use custom color scheme
+colorscheme zenburn
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
@@ -275,17 +237,10 @@ inoremap <down> <nop>
 map <silent>bd :Bclose<cr>
 
 " Close all the buffers
-map <silent>cb :1,1000 bd!<cr>
+map <silent>cb :%bd<cr>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers
-" try
-"   set switchbuf=useopen,usetab,newtab
-"   set stal=2
-" catch
-" endtry
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -344,9 +299,9 @@ nmap <leader>l :set list!<CR>
 nmap <leader>cn :call ToggleRelativeLineNumbers()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-"
-" [,ss] Strip trailing whitespace
-nmap <leader>ss :call StripTrailingWhitespaces()<CR>
+
+" [,sw] Strip trailing whitespace
+nmap <leader>sw :call StripTrailingWhitespaces()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -365,113 +320,120 @@ map <leader>tn :NERDTreeToggle<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" [,v ] Make the opening of the `.vimrc` file easier
+" [,v] Make the opening of the `.vimrc` file easier
 nmap <leader>v :vsp $MYVIMRC<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" [,W ] Sudo write
+" [,W] Sudo write
 map <leader>W :w !sudo tee %<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " [,p] ipdb toggle
-"
-" type ,p to insert breakpoint. ^[ is at the end.  Insert with ctrl v and then
-" esc
-" " (the github web gui doesn't display control characters, but it is there)
 nnoremap <leader>p oimport pudb;pudb.set_trace()^[
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 "Make movement easier
-" map <C-h> <C-w>h
-" map <C-j> <C-w>j
-" map <C-k> <C-w>k
-" map <C-l> <C-w>l
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Quickly open a buffer for scripbble
+" [,q] Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Toggle paste mode on and off
+" [,pp] Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-"highlight row except when reading
-set cursorline " highlight the current line/column
-" f9 to toggle line/column highlighting
+" [,ce] to toggle line/column highlighting
 noremap <leader>ce  :set cursorline! cursorcolumn!<cr>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-"Mapping for ctrlp
+" [,c]Mapping for ctrlp
 let cwd = getcwd()
 map <leader>c  :CtrlP cwd<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-"Pull up task list for file:w
+" [,tl] Pull up task list for file:w
 map <leader>tl :TaskList<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-"Map gundo
+" [,gt] Map gundo
 map <leader>gt :GundoToggle<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-"Make ctrl+s save like in textpad
+" [ctrl+s] Make ctrl+s save like in textpad
 inoremap <c-S> <ESC>:w<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Better navigating through omnicomplete option list
-inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
-inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
+inoremap <expr> u ((pumvisible())?("\<C-n>"):("u"))
+inoremap <expr> i ((pumvisible())?("\<C-p>"):("i"))
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-"Toggle show numbers
+" [,nm] Toggle show numbers
 nnoremap <silent>nm :call NumberToggle()<cr>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-"buffer find mode
+" [,f] buffer find mode
 map <leader>f :CtrlPBuffer<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [s] show syntastc errors
+map <silent> <Leader>e :Errors<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,s] Toggle syntastkc mode
+map <Leader>s :SyntasticToggleMode<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you vimgrep after the selected text
+" [gv]  When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
-" Open vimgrep and put the cursor in the right position
-map <leader>gs :vimgrep // **/*.<left><left><left><left><left><left><left>
+" [,g] Open vimgrep and put the cursor in the right position
+map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
-" Vimgreps in the current file
+" [,space] Vimgreps in the current file
 map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
-" When you search with vimgnrep, display your results in cope by doing:
-"   <leader>cc
+" Do :help cope if you are unsure what cope is. It's super useful!
+"
+" When you search with vimgrep, display your results in cope by doing:
+"   <leader>gd
 "
 " To go to the next search result do:
-"   <leader>n
+"   <leader>gn
 "
 " To go to the previous search results do:
-"   <leader>cn
+"   <leader>gp
 "
-map <leader>cp :botright cope<cr>
+map <leader>gd :botright cope<cr>
+map <leader>go  ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>gn :cn<cr>
+map <leader>gp :cp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -491,86 +453,27 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Gundo Settings
-let g:gundo_right = "1"
-let g:gundo_auto_preview = "1"
-
-"Gundo Settings for version history"
-
 let g:gundo_width = 60
-let g:gundo_preview_height = 40
+let g:gundo_preview_height = 10
 let g:gundo_right = 1
+let g:gundo_preview_bottom = 1
+let g:gundo_auto_preview = 1
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 "Nerdtree
-
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
-
-"Fix autoclose issue
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-" Python-Mode
-" Activate rope
-" Keys:
-" K             Show python docs
-" <Ctrl-Space>  Rope autocomplete
-" <Ctrl-c>g     Rope goto definition
-" <Ctrl-c>d     Rope show documentation
-" <Ctrl-c>f     Rope find occurrences
-" <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
-" [[            Jump on previous class or function (normal, visual, operator modes)
-" ]]            Jump on next class or function (normal, visual, operator modes)
-" [M            Jump on previous class or method (normal, visual, operator modes)
-" ]M            Jump on next class or method (normal, visual, operator modes)]
-let g:pymode_doc  =1
-let g:pymode_rope = 0
-let g:pymode_doc_key = 'K'
-
-"Linting
-let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
-" Auto check on save
-let g:pymode_lint_write = 1
-
-" Support virtualenv
-let g:pymode_virtualenv = 1
-
-" Enable breakpoints plugin
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_bind = '<leader>b'
-
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-" Don't autofold code
-" let g:pymode_folding = 0
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 "Jedi-Vim
-" set completeopt=menu
 let g:jedi#completions_enabled = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#show_call_signatures = "1"
-
-" Neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-if !exists('g:neocomplcache_omni_functions')
-    let g:neocomplcache_omni_functions = {}
-endif
-
-if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
-endif
-let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
+let g:jedi#show_call_signatures = 1
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -584,19 +487,32 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237 guibg=#073642
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" Markdown
-
-" Disable Folding
-" https://github.com/plasticboy/vim-markdown#disable-folding
-let g:vim_markdown_folding_disabled=1
-
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
 " Vim-Airline
 
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline_theme='zenburn'
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" Syntastic
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+" ignore some annoying pep things
+let g:syntastic_python_checker_args = '--ignore="E225,E501,E302,E261,E701,E241,E126,E127,E128,W80"'
+" use flake8
+let g:syntastic_python_checkers = ['flake8']
+" On by default, turn it off for html
+let g:syntastic_mode_map = { 'mode': 'active',
+    \ 'active_filetypes': [],
+    \ 'passive_filetypes': ['html'] }
+" Better :sign interface symbols
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '!'
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -629,40 +545,6 @@ highlight User1
     \ term=NONE
     \ cterm=NONE  ctermbg=237    ctermfg=Grey
     \ gui=NONE    guibg=#073642  guifg=#839496
-
-" " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-"
-" set statusline=
-" set statusline+=%1*            " User1 highlight
-" let g:airline_section_b = airline#section#create('%{virtualenv#statusline()}')
-" let g:airline_section_a = airline#section#create(['mode','branch'])
-" let g:airline_section_c = airline#section#create(['hunks','%f'])
-" let g:airline_section_x = airline#section#create(['filetype'])
-" let g:airline_section_y = airline#section#create(['%P'])
-" let g:airline_section_z = airline#section#create_right(['linenr', '%c'])
-" set statusline+=\ %{GetGitBranchName()} " Git branch name
-" set statusline+=\ [%f]         " Path to the file
-" set statusline+=%m             " Modified flag
-" set statusline+=%r             " Readonly flag
-" set statusline+=%h             " Help file flag
-" set statusline+=%w             " Preview window flag
-" set statusline+=%y             " File type
-" set statusline+=[
-" set statusline+=%{&ff}         " File format
-" set statusline+=:
-" set statusline+=%{strlen(&fenc)?&fenc:'none'} " File encoding
-" set statusline+=]
-" set statusline+=%=             " Left/Right separator
-" set statusline+=%c             " File encoding
-" set statusline+=,
-" set statusline+=%l             " Current line number
-" set statusline+=/
-" set statusline+=%L             " Total number of lines
-" set statusline+=\ (%P)\        " Percent through file
-
-" Example result:
-"
-"  [1] [master] [vim/vimrc][vim][unix:utf-8]            17,238/381 (59%)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
