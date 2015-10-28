@@ -83,6 +83,7 @@ if has('autocmd')
 endif
 
 set t_Co=256                   " Enable full-color support
+set t_ut=                      " Fix issue with background splash
 
 
 set autoindent                 " Copy indent to the new line
@@ -113,7 +114,8 @@ set cpoptions+=$               " When making a change, don't
 set colorcolumn=73             " Highlight certain column(s)
 set cursorline                 " Highlight the current line
 set directory=~/.vim/swaps     " Set directory for swap files
-set encoding=utf-8 nobomb      " Use UTF-8 without BOM
+set encoding=utf8 nobomb       " Use UTF-8 without BOM
+set fileencoding=utf8
 set history=5000               " Increase command line history
 set hlsearch                   " Enable search highlighting
 set ignorecase                 " Ignore case in search patterns
@@ -379,8 +381,8 @@ inoremap <c-S> <ESC>:w<CR>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " Better navigating through omnicomplete option list
-inoremap <expr> u ((pumvisible())?("\<C-n>"):("u"))
-inoremap <expr> i ((pumvisible())?("\<C-p>"):("i"))
+inoremap <expr> U ((pumvisible())?("\<C-n>"):("U"))
+inoremap <expr> I ((pumvisible())?("\<C-p>"):("I"))
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -507,9 +509,9 @@ let g:syntastic_python_checker_args = '--ignore="E225,E501,E302,E261,E701,E241,E
 " use flake8
 let g:syntastic_python_checkers = ['flake8']
 " On by default, turn it off for html
-let g:syntastic_mode_map = { 'mode': 'active',
-    \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['html'] }
+" let g:syntastic_mode_map = { 'mode': 'active',
+"     \ 'active_filetypes': [],
+"     \ 'passive_filetypes': ['html'] }
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
