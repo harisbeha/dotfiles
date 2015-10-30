@@ -20,6 +20,7 @@ declare -a FILES_TO_SYMLINK=(
     "shell/rbenv"
     "shell/wgetrc"
     "shell/tmux.conf"
+    "shell/functions"
 
     "git/gitattributes"
     "git/gitignore"
