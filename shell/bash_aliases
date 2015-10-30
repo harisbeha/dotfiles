@@ -24,6 +24,8 @@ alias j="jobs"
 alias hm="cd ~/"
 alias dot="cd ~/.dotfiles"
 alias pyv="cd ~/.virtualenvs"
+alias nv="nvim"
+alias v="vim"
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '

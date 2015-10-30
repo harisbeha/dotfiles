@@ -3,6 +3,7 @@ atom.symlink/.storage
 atom.symlink/packages
 atom.symlink/storage
 atom.symlink/themes
+vim/vim/shada
 vim/vim/plugins
-vim/vim/shada/*
+vim/vim/bundle
 git/gitconfig.symlink
