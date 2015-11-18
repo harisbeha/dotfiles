@@ -32,6 +32,7 @@ declare -a HOMEBREW_FORMULAE=(
     "ruby-build"
     "ctags-exuberant"
     "neovim"
+    "the_silver_searcher"
 )
 
 # Homebrew Casks
