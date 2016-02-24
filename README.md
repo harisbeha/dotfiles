@@ -1,4 +1,5 @@
-# [Demas'](https://github.com/amdemas) dotfiles
+# dev dotfiles
+## Credit to Andrew Demas (https://github.com/amdemas)
 
 ## Setup
 
