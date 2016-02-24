@@ -1,4 +1,4 @@
-# dev dotfiles
+# Chromebook dotfiles
 ## Credit to Andrew Demas (https://github.com/amdemas)
 
 ## Setup
